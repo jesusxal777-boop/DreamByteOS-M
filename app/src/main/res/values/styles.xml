@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.DreamByte" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#66D9FF</item>
+        <item name="android:navigationBarColor">#07152D</item>
+        <item name="android:statusBarColor">#07152D</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>
