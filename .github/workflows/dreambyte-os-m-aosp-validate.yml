@@ -1,0 +1,39 @@
+name: Validate DreamByte OS M AOSP scaffold
+
+on:
+  pull_request:
+    paths:
+      - 'aosp/**'
+      - 'config/**'
+      - 'product/**'
+      - 'patches/**'
+      - 'tools/**'
+      - 'docs/aosp-integration.md'
+      - '.github/workflows/dreambyte-os-m-aosp-validate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'aosp/**'
+      - 'config/**'
+      - 'product/**'
+      - 'patches/**'
+      - 'tools/**'
+      - 'docs/aosp-integration.md'
+      - '.github/workflows/dreambyte-os-m-aosp-validate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scaffold:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate AOSP scaffold
+        run: ./tools/validate-aosp-layout.sh
+      - name: Validate scripts have safe syntax
+        run: bash -n tools/validate-environment.sh tools/validate-aosp-layout.sh tools/sync-aosp.sh
+      - name: Report capability only
+        run: ./tools/validate-environment.sh
